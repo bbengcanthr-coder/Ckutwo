@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>นิมิตมรณะ | ตำนานวิญญาณพวน</title>
+    <!-- ใช้ฟอนต์ Pridi จาก Google Fonts ให้ความรู้สึกเหมือนตัวหนังสือในคัมภีร์โบราณ -->
+    <link href="https://fonts.googleapis.com/css2?family=Pridi:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #050505;
+            --text-main: #d4c4b7;
+            --blood-red: #7a0000;
+            --dark-red: #400000;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Pridi', serif;
+            overflow-x: hidden;
+            background-image: radial-gradient(circle at center, #111 0%, #000 100%);
+        }
+
+        /* เอฟเฟกต์ Noise (จุดสัญญาณรบกวน) */
+        .noise-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.04;
+            background-image: url('data:image/svg+xml;utf8,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)"/%3E%3C/svg%3E');
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            justify-content: center;
+        }
+
+        .title {
+            font-size: 2.5rem;
+            color: var(--blood-red);
+            text-align: center;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 10px rgba(122, 0, 0, 0.5);
+            animation: flicker 4s infinite;
+        }
+
+        .story-section {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            text-align: justify;
+            margin-bottom: 50px;
+            padding: 30px;
+            border-top: 1px solid var(--dark-red);
+            border-bottom: 1px solid var(--dark-red);
+            background: rgba(10, 10, 10, 0.6);
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
+        }
+
+        .story-section p {
+            margin-bottom: 15px;
+        }
+
+        .btn-summon {
+            background: transparent;
+            color: var(--blood-red);
+            border: 1px solid var(--blood-red);
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            font-family: inherit;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-summon:hover {
+            background: var(--blood-red);
+            color: #000;
+            box-shadow: 0 0 20px var(--blood-red);
+        }
+
+        .dream-container {
+            margin-top: 40px;
+            min-height: 150px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .dream-output {
+            font-size: 1.4rem;
+            line-height: 1.6;
+            color: #fff;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+            white-space: pre-wrap;
+            transition: opacity 0.5s;
+        }
+
+        /* Animations */
+        @keyframes flicker {
+            0%, 19.999%, 22%, 62.999%, 64%, 64.999%, 70%, 100% { opacity: 1; }
+            20%, 21.999%, 63%, 63.999%, 65%, 69.999% { opacity: 0.4; }
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 8px;
+            height: 1.2rem;
+            background-color: var(--blood-red);
+            animation: blink 1s step-end infinite;
+            vertical-align: text-bottom;
+            margin-left: 5px;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="noise-overlay"></div>
+    
+    <div class="container">
+        <h1 class="title">นิมิตมรณะ: ตำนานวิญญาณพวน</h1>
+        
+        <div class="story-section">
+            <p>คนเฒ่าคนแก่ชาวพวนมักเตือนลูกหลานเสมอว่า <strong>"อย่าตื่นกลางดึก หากได้ยินเสียงกลองยาวแว่วมาตามสายลม"</strong></p>
+            <p>ในอดีตกาล ก่อนที่ศาสนาจะหยั่งรากลึก พิธีกรรม 'เซ่นเรือน' และการบูชา 'ผีปู่ย่า' ของชาวลาวพวนนั้นเคร่งครัดและอาบย้อมไปด้วยเลือด หากบ้านใด "ผิดผี" ละเมิดข้อห้ามของบรรพบุรุษ บทลงโทษไม่ใช่เพียงความเจ็บป่วย แต่คือการถูกพรากวิญญาณไปในยามหลับใหล</p>
+            <p>ตำนานเล่าว่า หมอผีเฒ่าผู้ทำพิธีสะเดาะเคราะห์ที่ผิดพลาด ได้ปลดปล่อยสัมภเวสีและคำสาปแช่งให้ฝังรากอยู่ในแผ่นดิน ทุกคืนวันพระจันทร์ดับ วิญญาณเหล่านั้นจะคืบคลานเข้าสู่ความฝันของผู้ที่จิตอ่อนแอ ถักทอภาพนิมิตที่บิดเบี้ยว เพื่อดึงพวกเขาไปสู่ปรโลก...</p>
+            <p style="text-align: center; color: var(--blood-red); margin-top: 30px;">
+                <em>จงตั้งจิตให้มั่น ก่อนที่จะเปิดรับนิมิตของพวกมัน</em>
+            </p>
+        </div>
+
+        <button class="btn-summon" onclick="summonDream()">เปิดหนังสือนิมิต</button>
+
+        <div class="dream-container">
+            <div id="dream-text" class="dream-output"></div>
+        </div>
+    </div>
+
+    <script>
+        const dreams = [
+            "คุณฝันว่าตื่นขึ้นมากลางดึกในกระท่อมไม้เก่าๆ มีหญิงชราในชุดม่อฮ่อมเปื้อนเลือด ยืนชี้หน้าอยู่ปลายเตียงแล้วร้องเพลงกล่อมเด็กภาษาพวนด้วยน้ำเสียงแหบพร่า",
+            "คุณได้เข้าร่วมพิธีบายศรีสู่ขวัญในหมู่บ้านร้าง ทุกคนยิ้มแย้มต้อนรับ แต่เมื่อก้มมองสายสิญจน์ที่ผู้เฒ่ากำลังผูกข้อมือให้ มันกลับกลายเป็นไส้สดๆ ที่ยังมีไอความร้อน",
+            "เสียงกลองยาวดังก้องในหัว ลืมตามาพบว่าตัวเองถูกมัดติดกับเสาเอกของบ้าน รอบตัวคือชาวบ้านไม่มีตาดำที่กำลังฟ้อนรำเตรียมบูชายัญคุณให้ผีปู่ย่า",
+            "คุณเจอศาลเพียงตาไม้สักใต้ต้นไทรใหญ่ พอชะโงกหน้าไปดู ตุ๊กตากุมารและตายายกลับค่อยๆ หันคอมาหาแล้วฉีกยิ้มกว้างจนถึงใบหู",
+            "ฝันว่ากำลังนั่งทอผ้าซิ่นตีนจกอย่างเหม่อลอย แต่เมื่อกางผ้าออกดู ลวดลายที่ทอออกมากลับเป็นรูปใบหน้าของตัวคุณเองที่กำลังกรีดร้องด้วยความทรมาน",
+            "เงาดำร่างสูงใหญ่คร่อมทับอยู่บนอกคุณในยามหลับ มันบีบคอคุณแน่นพร้อมกับพึมพำบทสวดเรียกผีปอบ คุณพยายามตะโกนแต่ไม่มีเสียงใดหลุดรอดออกมา",
+            "หลงเข้าไปในป่าช้าเก่าท้ายหมู่บ้านพวน จู่ๆ ดินใต้เท้าก็ยุบตัว ศพที่ถูกฝังด้วยผ้าขาวม้าค่อยๆ ลุกขึ้นมาฟ้อนรำล้อมวงรอบตัวคุณ",
+            "คุณได้รับเชิญไปงานบุญประจำปี อาหารบนใบตองดูน่ากิน แต่เมื่อตักเข้าปาก รสชาติกลับคาวจัด คุณคายออกมาพบว่าเป็นเส้นผมและเศษเล็บคนตาย",
+            "เสียงสุนัขหอนรับกันเป็นจังหวะแปลกๆ เมื่อคุณมองออกไปนอกหน้าต่างห้องนอน เห็นชายไร้หัวสวมชุดพื้นเมืองกำลังเดินลากมีดพร้าวนไปมารอบบ้านคุณ",
+            "คุณเปิดหีบไม้โบราณที่ได้รับเป็นมรดก ภายในไม่ได้มีสมบัติ แต่มีก้อนผมสีดำขนาดใหญ่ที่ขยับได้ และแผ่นยันต์ที่สลักคำสาปแช่งชื่อของคุณไว้",
+            "ฟันกรามของคุณค่อยๆ ร่วงหล่นหมดปาก กลายเป็นเมล็ดข้าวเปลือกเปื้อนเลือด จากนั้นมีฝูงไก่สีดำสนิทรุมจิกกินเมล็ดข้าวพร้อมกับฉีกเนื้อที่เท้าของคุณ",
+            "เงาของตัวคุณเองในกระจกเงาไม่ขยับตามที่คุณทำ มันยืนนิ่ง แสยะยิ้ม แล้วค่อยๆ ยกมือขึ้นมาทำท่าเชือดคอตัวเอง เลือดไหลทะลักออกมาจากกระจก",
+            "คุณตกอยู่ในวงล้อมของวิญญาณบรรพบุรุษที่โกรธแค้น พวกเขาสวมชุดขาวขุ่น ชี้หน้าคุณพร้อมตะโกนดังก้องกังวานว่า 'มึงผิดผี! มึงต้องชดใช้!'",
+            "ฝันเห็นผู้หญิงผมยาวรุงรัง ใส่ผ้าซิ่นไหมขาดวิ่น คลานสี่ขาอยู่บนเพดานห้องนอน คอของเธอหักพับไปด้านหลังและกำลังจ้องมองคุณหลับ",
+            "คุณเดินตามเสียงเรียกชื่อตัวเองเข้าไปในป่ากล้วย พบร่างของตัวเองผูกคอตายอยู่บนต้นกล้วยตานี ร่างนั้นลืมตาขึ้นและพูดว่า 'มาอยู่ด้วยกันสิ'",
+            "หมอผีประจำหมู่บ้านกำลังทำพิธีสวดถอนวิญญาณ เขาตอกตะปูลงบนตุ๊กตาดินเหนียว ทุกครั้งที่ค้อนกระแทก คุณจะรู้สึกถึงกระดูกในตัวที่แตกหักทีละชิ้น",
+            "คุณตกลงไปในบ่อโคลนลึกกลางทุ่งนา พยายามตะเกียกตะกายขึ้นมา แต่มีมือเหี่ยวแห้งนับร้อยดึงรั้งข้อเท้าคุณลงไปสู่ก้นบ่อที่เต็มไปด้วยซากศพ",
+            "ผีโพงแสงสีเขียววาบสว่างขึ้นหน้าบ้าน มันไม่ได้มากินของสกปรก แต่มันเคาะประตูเป็นจังหวะ และเรียกชื่อคนในครอบครัวของคุณทีละคน",
+            "งานบุญเบิกฟ้าที่วิปริต ชาวบ้านกรีดเลือดตัวเองลงในแม่น้ำเพื่อบูชาพญานาค แต่สิ่งที่โผล่พ้นน้ำขึ้นมาคืออสุรกายร่างมนุษย์ที่มีหัวเป็นงูเน่าเปื่อย",
+            "ตื่นขึ้นมากลางดึกเพราะรู้สึกอึดอัด พอมองไปที่ปลายเท้า เห็นเด็กชายผมจุกตัวซีดเผือดกำลังนั่งแทะนิ้วเท้าของคุณอยู่เงียบๆ"
+        ];
+
+        let typingInterval;
+        let isGenerating = false;
+
+        function summonDream() {
+            if (isGenerating) return;
+            isGenerating = true;
+
+            const dreamTextElement = document.getElementById('dream-text');
+            const button = document.querySelector('.btn-summon');
+            
+            // รีเซ็ตการแสดงผล
+            clearInterval(typingInterval);
+            dreamTextElement.innerHTML = '';
+            button.innerText = 'กำลังเพ่งนิมิต...';
+            button.style.pointerEvents = 'none';
+            button.style.opacity = '0.5';
+
+            // เลือกความฝันแบบสุ่ม
+            const randomIndex = Math.floor(Math.random() * dreams.length);
+            const selectedDream = dreams[randomIndex];
+
+            // สร้างเอฟเฟกต์ดีเลย์ก่อนเริ่มพิมพ์ เหมือนกำลังโหลดวิญญาณ
+            setTimeout(() => {
+                let i = 0;
+                dreamTextElement.innerHTML = '<span class="cursor"></span>';
+                
+                typingInterval = setInterval(() => {
+                    const currentText = selectedDream.substring(0, i);
+                    dreamTextElement.innerHTML = currentText + '<span class="cursor"></span>';
+                    i++;
+
+                    if (i > selectedDream.length) {
+                        clearInterval(typingInterval);
+                        isGenerating = false;
+                        button.innerText = 'เปิดหนังสือนิมิตอีกครั้ง';
+                        button.style.pointerEvents = 'auto';
+                        button.style.opacity = '1';
+                    }
+                }, 40); // ความเร็วในการพิมพ์ (มิลลิวินาที)
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
